@@ -104,7 +104,7 @@ fullscreen = 0
 # (list) Permissions
 # (See https://python-for-android.readthedocs.io/en/latest/buildoptions.html for all the supported syntaxes and properties)
 android.permissions = android.permission.INTERNET
-source.main = k.py
+source.main = main.py
 
 ##http_proxy = http://127.0.0.1:10809
 ##https_proxy = http://127.0.0.1:10809
