@@ -29,8 +29,15 @@ jobs:
         pip install buildozer
         pip install cython==0.29.34
 
+    - name: Fix Permissions
+      run: |
+        sudo chown -R $USER:$USER .
+        sudo chmod -R 777 ~/.buildozer || true
+
     - name: Build with Buildozer
       run: |
+        export ANDROID_SDK_ROOT=$HOME/.buildozer/android/platform/android-sdk
+        export ANDROID_NDK_ROOT=$HOME/.buildozer/android/platform/android-ndk-r25b
         buildozer -v android debug
 
     - name: Upload APK
