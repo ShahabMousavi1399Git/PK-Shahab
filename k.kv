@@ -1,0 +1,2011 @@
+# k.kv
+ScreenManager:
+    id: manager
+    LoginScreen:    
+    GuestRegisterScreen:
+    UserScreen:
+    HostRegisterScreen:
+    AdminScreen:
+    HostServicesScreen:
+    HostDemandScreen:
+
+<LoginScreen>:
+    name: "login_screen"
+    MDFloatLayout:
+        md_bg_color: 1,1,1,1
+        
+        MDLabel:
+            text: app.fa("ورود به سیستم")
+            pos_hint: {"center_x": .5, "center_y": .85}
+            halign: "center"
+            font_size: "30sp"
+            font_name: "Vazirmatn.ttf"
+            bold: True
+
+        # --- فیلد نام کاربری ---
+        MDLabel:
+            text: app.fa("نام کاربری")
+            pos_hint: {"center_x": .85, "center_y": .71}
+            halign: "right"
+            font_name: "Vazirmatn.ttf"
+            font_size: "10sp"
+            
+        MDTextField:
+            id: login_user
+            pos_hint: {"center_x": .5, "center_y": .65}
+            size_hint_x: .8
+            font_name: "Vazirmatn.ttf"
+            font_family: "Vazirmatn"
+            halign: "right"
+            text_align: "right"
+            rtl: True
+
+        # --- فیلد رمز عبور ---
+        MDLabel:
+            text: app.fa("رمز عبور")
+            pos_hint: {"center_x": .85, "center_y": .61}
+            halign: "right"
+            font_name: "Vazirmatn.ttf"
+            font_size: "10sp"
+
+        MDTextField:
+            id: login_pass
+            password: True
+            pos_hint: {"center_x": .5, "center_y": .55}
+            size_hint_x: .8
+            font_name: "Vazirmatn.ttf"
+            font_family: "Vazirmatn"
+            halign: "right"
+            text_align: "right"
+            rtl: True
+
+        MDButton:
+            style: "filled"
+            pos_hint: {"center_x": .5, "center_y": .4}
+            size_hint_x: .6
+            on_release: app.login()
+            MDButtonText:
+                text: app.fa("ورود")
+                font_name: "Vazirmatn.ttf"
+            
+        MDLabel:
+            text: app.fa("فراموشی رمز")
+            pos_hint: {"center_x": .35, "center_y": .3}
+            halign: "center"
+            font_size: "10sp"
+            font_name: "Vazirmatn.ttf"
+            bold: True
+            
+        MDButton:
+            style: "filled"
+            pos_hint: {"center_x": .65, "center_y": .3}
+            size_hint_x: .2
+            on_release: app.go_guest_register()
+            MDButtonText:
+                text: app.fa("ثبت نام")
+                font_size: "10sp"
+                font_name: "Vazirmatn.ttf"
+				
+				
+            
+<GuestRegisterScreen>:
+    name: "guest_register_screen"
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # ==========================================
+        # 2. ناحیه فرم (قابل اسکرول)
+        # ==========================================
+        ScrollView:
+            size_hint_y: 1
+
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(20)
+                spacing: dp(10)
+
+                # --- نام و نام خانوادگی ---
+                MDLabel:
+                    text: app.fa("نام و نام خانوادگی:")
+                    font_name: "Vazirmatn.ttf"
+                    font_size: "12sp"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+
+                MDTextField:
+                    id: guest_fullname
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- شماره تماس ---
+                MDLabel:
+                    text: app.fa("شماره تماس:")
+                    font_name: "Vazirmatn.ttf"
+                    font_size: "12sp"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+
+                MDTextField:
+                    id: guest_phone
+                    input_filter: "int"
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- شماره ملی ---
+                MDLabel:
+                    text: app.fa("شماره ملی:")
+                    font_name: "Vazirmatn.ttf"
+                    font_size: "12sp"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+
+                MDTextField:
+                    id: guest_national
+                    input_filter: "int"
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- رمز عبور ---
+                MDLabel:
+                    text: app.fa("رمز ورود:")
+                    font_name: "Vazirmatn.ttf"
+                    font_size: "12sp"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+
+                MDTextField:
+                    id: guest_pass
+                    password: True
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- دکمه ثبت ---
+                MDButton:
+                    style: "filled"
+                    pos_hint: {"center_x": .5}
+                    size_hint_x: .6
+                    on_release: app.register_guest()
+                    MDButtonText:
+                        text: app.fa("ثبت نام")
+                        font_name: "Vazirmatn.ttf"
+
+        # ==========================================
+        # 1. نوار ابزار پایین
+        # ==========================================
+        MDCard:
+            size_hint_y: None
+            height: "40dp"
+            md_bg_color: 0.15, 0.45, 0.9, 1
+            radius: [0, 0, 0, 0]
+            elevation: 0
+            ripple_behavior: False
+            
+            MDBoxLayout:
+                orientation: "horizontal"
+                padding: [dp(10), 0, dp(10), 0]
+                
+                MDIconButton:
+                    icon: "arrow-left"
+                    theme_icon_color: "Custom"
+                    icon_color: 1, 1, 1, 1
+                    on_release: app.go_login()
+                    
+                MDLabel:
+                    text: app.fa("ثبت نام")
+                    font_name: "Vazirmatn.ttf"
+                    halign: "center"
+                    valign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    font_style: "Title"
+                    role: "medium"
+					
+					
+                    
+<UserScreen>:
+    name: "user_screen"
+    
+    MDNavigationLayout:
+        
+        # ==========================================
+        # 1. ScreenManager (محتوای اصلی صفحه)
+        # ==========================================
+        ScreenManager:
+            id: screen_manager
+            
+            MDScreen:
+                name: "main_content"
+                
+                BoxLayout:
+                    orientation: "vertical"
+
+                    # ==========================================
+                    # بخش بالایی (آیکون‌ها + لیست رستوران‌ها)
+                    # ==========================================
+                    MDFloatLayout:
+                        md_bg_color: 1,1,1,1
+                        canvas.before:
+                            Color:
+                                rgba: 1, 1, 1, 1
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        
+                        # --- ردیف بالایی: تاریخ + آیکون‌ها ---
+                        MDBoxLayout:
+                            orientation: "horizontal"
+                            size_hint_y: None
+                            height: dp(50)
+                            pos_hint: {"right": .99, "top": .99}
+                            padding: [dp(5), 0, dp(5), 0]
+                            
+                            # ۱. سمت چپ: تاریخ (اول اضافه می‌شود)
+                            MDLabel:
+                                text: app.current_date_display
+                                halign: "left"
+                                valign: "center"
+                                text_size: self.width, None
+                                font_name: "Vazirmatn.ttf"
+                                font_size: "10sp"
+                                size_hint_x: 1
+                                padding: [dp(10), 0, dp(20), 0]
+                            
+                            # ۲. سمت راست: آیکون‌ها (دوم اضافه می‌شود)
+                            MDBoxLayout:
+                                orientation: "horizontal"
+                                size_hint_x: None
+                                width: dp(80)
+                                spacing: dp(1)
+                                
+                                # دکمه شفاف حاوی عکس
+                                Button:
+                                    background_color: (0, 0, 0, 0)
+                                    size_hint: None, None
+                                    size: dp(35), dp(35)
+                                    pos_hint: {"center_y": .5}
+                                    on_release: nav_drawer.set_state("open")
+                                    Image:
+                                        source: "C:/Users/NSTAR/Desktop/k/1 . Pics/1.SettingAdminstration_364.png"
+                                        pos: self.parent.pos
+                                        size: self.parent.size
+                                        allow_stretch: True
+                                        keep_ratio: True
+                                        
+                                # آیکون منو (سه‌خط)
+                                MDIconButton:
+                                    icon: "menu"
+                                    theme_icon_color: "Custom"
+                                    icon_color: (0.1, 0.1, 0.1, 1)
+                                    size_hint: None, None
+                                    size: dp(40), dp(40)
+                                    on_release: nav_drawer.set_state("open")
+                                    
+                        # --- عنوان صفحه ---
+                        MDLabel:
+                            id: user_screen_title
+                            text: app.fa("رزرو کنید !")
+                            pos_hint: {"center_x": .5, "center_y": .88}
+                            halign: "center"
+                            font_name: "Vazirmatn.ttf"
+                            font_style: "Body"
+							role: "small"
+
+                        # --- لیست رستوران‌ها (اسکرول عمودی) ---
+                        ScrollView:
+                            id: main_scroll
+                            pos_hint: {"center_x": .5, "center_y": .45}
+                            size_hint: .95, .8
+                            do_scroll_x: False
+                            do_scroll_y: True
+                            
+                            MDGridLayout:
+                                id: restaurant_list
+                                cols: 1
+                                size_hint_y: None
+                                height: self.minimum_height  # ← فقط این خط باید باشد
+                                spacing: dp(10)
+                                padding: dp(5)
+
+	
+                    # ==========================================
+                    # 2. نوار پایین (شبیه جاجیگا)
+                    # ==========================================
+                    MDCard:
+                        size_hint_y: None
+                        height: dp(65)
+                        md_bg_color: 1, 1, 1, 1
+                        radius: [0, 0, 0, 0]
+                        elevation: 8
+                        
+                        MDBoxLayout:
+                            orientation: "horizontal"
+                            size_hint_x: 1
+                            padding: [dp(5), dp(5), dp(5), dp(5)]
+                            
+                            # آیتم ۱: صفحه اصلی
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                size_hint_x: .25
+                                spacing: dp(0)
+                                on_touch_down: if self.collide_point(*args[1].pos): app.go_home()
+                                
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    anchor_y: "center"
+                                    size_hint_y: None
+                                    height: dp(30)
+                                    
+                                    MDIcon:
+                                        icon: "home-outline"
+                                        halign: "center"
+                                        valign: "center"
+                                        theme_text_color: "Custom"
+                                        text_color: (0.1, 0.1, 0.1, 1)
+                                        font_size: dp(28)
+                                        padding: 0
+                                        size_hint: None, None
+                                        size: dp(28), dp(28)
+                                        
+                                MDLabel:
+                                    text: app.fa("صفحه اصلی")
+                                    font_name: "Vazirmatn.ttf"
+                                    halign: "center"
+                                    valign: "top"
+                                    theme_text_color: "Custom"
+                                    text_color: (0.1, 0.1, 0.1, 1)
+                                    size_hint: 1, None
+                                    height: dp(15)
+                                    text_size: self.width, None
+									##font_size: "10sp"
+                                    font_style: "Label"
+							        role: "small"									
+
+                            # آیتم ۲: رزروهای من
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                size_hint_x: .25
+                                spacing: dp(0)
+                                on_touch_down: if self.collide_point(*args[1].pos): app.show_my_reservations()
+                                
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    anchor_y: "center"
+                                    size_hint_y: None
+                                    height: dp(30)
+                                    
+                                    MDIcon:
+                                        icon: "heart-outline"
+                                        halign: "center"
+                                        valign: "center"
+                                        theme_text_color: "Custom"
+                                        text_color: (0.1, 0.1, 0.1, 1)
+                                        font_size: dp(28)
+                                        padding: 0
+                                        size_hint: None, None
+                                        size: dp(28), dp(28)
+                                        
+                                MDLabel:
+                                    text: app.fa("رزرو های من")
+                                    font_name: "Vazirmatn.ttf"
+                                    halign: "center"
+                                    valign: "top"
+                                    theme_text_color: "Custom"
+                                    text_color: (0.1, 0.1, 0.1, 1)
+                                    size_hint: 1, None
+                                    height: dp(15)
+                                    text_size: self.width, None
+									##font_size: "10sp"
+                                    font_style: "Label"
+							        role: "small"
+
+                            # آیتم ۳: میزبان شوید / میزبانی کنید
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                size_hint_x: .25
+                                spacing: dp(0)
+                                on_touch_down: if self.collide_point(*args[1].pos): app.handle_host_click()
+                                
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    anchor_y: "center"
+                                    size_hint_y: None
+                                    height: dp(30)
+                                    
+                                    MDIcon:
+                                        icon: app.host_nav_icon  # ← آیکون پویا
+                                        halign: "center"
+                                        valign: "center"
+                                        theme_text_color: "Custom"
+                                        text_color: (0.1, 0.1, 0.1, 1)
+                                        font_size: dp(28)
+                                        padding: 0
+                                        size_hint: None, None
+                                        size: dp(28), dp(28)
+                                        
+                                MDLabel:
+                                    text: app.fa(app.host_nav_text)  # ← متن پویا
+                                    font_name: "Vazirmatn.ttf"
+                                    halign: "center"
+                                    valign: "top"
+                                    theme_text_color: "Custom"
+                                    text_color: (0.1, 0.1, 0.1, 1)
+                                    font_size: "10sp"
+                                    size_hint: 1, None
+                                    height: dp(15)
+                                    text_size: self.width, None
+									##font_size: "10sp"
+                                    font_style: "Label"
+							        role: "small"
+
+                            # آیتم ۴: اعلانات
+                            MDBoxLayout:
+                                orientation: "vertical"
+                                size_hint_x: .25
+                                spacing: dp(0)
+                                
+                                AnchorLayout:
+                                    anchor_x: "center"
+                                    anchor_y: "center"
+                                    size_hint_y: None
+                                    height: dp(30)
+                                    
+                                    MDIcon:
+                                        icon: "bell-outline"
+                                        halign: "center"
+                                        valign: "center"
+                                        theme_text_color: "Custom"
+                                        text_color: (0.1, 0.1, 0.1, 1)
+                                        font_size: dp(28)
+                                        padding: 0
+                                        size_hint: None, None
+                                        size: dp(28), dp(28)
+                                        
+                                MDLabel:
+                                    text: app.fa("اعلانات")
+                                    font_name: "Vazirmatn.ttf"
+                                    halign: "center"
+                                    valign: "top"
+                                    theme_text_color: "Custom"
+                                    text_color: (0.1, 0.1, 0.1, 1)
+                                    font_size: "10sp"
+                                    size_hint: 1, None
+                                    height: dp(15)
+                                    text_size: self.width, None	
+									##font_size: "10sp"
+                                    font_style: "Label"
+							        role: "small"
+									
+        # ==========================================
+        # 3. منوی کشویی (Drawer)
+        # ==========================================
+        MDNavigationDrawer:
+            id: nav_drawer
+            orientation: "horizontal"
+            anchor: "right"
+            radius: (0, 16, 16, 0)
+            width: dp(280)
+            
+            # حذف background_color و استفاده از canvas
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1  # سفید خالص
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            
+            MDBoxLayout:
+                orientation: "vertical"
+                padding: dp(10)
+                spacing: dp(5)
+                md_bg_color: 1, 1, 1, 1  # سفید کردن پس‌زمینه داخلی
+
+                # بخش بالای منو (پروفایل)
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: dp(80)
+                    spacing: dp(5)
+                    padding: [dp(10), 0, 0, 0]
+                    
+                    MDIcon:
+                        icon: "account-circle-outline"
+                        halign: "center"
+                        valign: "center"
+                        font_size: dp(50)
+                        theme_text_color: "Custom"
+                        text_color: (0.6, 0.6, 0.6, 1)
+                    
+                    MDLabel:
+                        text: app.fa("ورود / ثبت نام")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "right"
+                        valign: "center"
+                        theme_text_color: "Custom"
+                        text_color: (0.1, 0.1, 0.1, 1)
+                        font_size: "14sp"
+
+                MDDivider:
+                    size_hint_y: None
+                    height: dp(1)
+                    
+                ScrollView:
+                    size_hint_y: 1
+                    MDList:
+                        spacing: 0
+                        
+                        MDListItem:
+                            _no_ripple_effect: True
+                            on_release: app.go_home()
+                            size_hint_y: None
+                            height: dp(40)
+                            MDListItemTrailingIcon:
+                                icon: "home-outline"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                            MDListItemHeadlineText:
+                                text: app.fa("صفحه اصلی")
+                                font_name: "Vazirmatn.ttf"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                                font_style: "Label"
+                                role: "small"
+
+                        MDListItem:
+                            _no_ripple_effect: True
+                            size_hint_y: None
+                            height: dp(40)
+                            MDListItemTrailingIcon:
+                                icon: "heart-outline"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                            MDListItemHeadlineText:
+                                text: app.fa("علاقه‌مندی‌ها")
+                                font_name: "Vazirmatn.ttf"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                                font_style: "Label"
+                                role: "small"
+                                
+                        MDListItem:
+                            _no_ripple_effect: True
+                            on_release: app.handle_host_click()
+                            size_hint_y: None
+                            height: dp(40)
+                            MDListItemTrailingIcon:
+                                icon: "plus-box-outline"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                            MDListItemHeadlineText:
+                                text: app.fa("میزبانی کنید")
+                                font_name: "Vazirmatn.ttf"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                                font_style: "Label"
+                                role: "small"
+                                
+                        MDListItem:
+                            _no_ripple_effect: True
+                            size_hint_y: None
+                            height: dp(40)
+                            MDListItemTrailingIcon:
+                                icon: "headset"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                            MDListItemHeadlineText:
+                                text: app.fa("پشتیبانی")
+                                font_name: "Vazirmatn.ttf"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                                font_style: "Label"
+                                role: "small"
+                                                                
+                        MDDivider:
+                            size_hint_y: None
+                            height: dp(1)
+                            
+                        MDListItem:
+                            _no_ripple_effect: True
+                            size_hint_y: None
+                            height: dp(40)
+                            MDListItemTrailingIcon:
+                                icon: "comment-question-outline"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                            MDListItemHeadlineText:
+                                text: app.fa("سوالات متداول")
+                                font_name: "Vazirmatn.ttf"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                                font_style: "Label"
+                                role: "small"
+                                
+                        MDListItem:
+                            _no_ripple_effect: True
+                            size_hint_y: None
+                            height: dp(40)
+                            MDListItemTrailingIcon:
+                                icon: "file-document-outline"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                            MDListItemHeadlineText:
+                                text: app.fa("قوانین و وب‌سایت")
+                                font_name: "Vazirmatn.ttf"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                                font_style: "Label"
+                                role: "small"
+                                
+                        MDListItem:
+                            _no_ripple_effect: True
+                            size_hint_y: None
+                            height: dp(40)
+                            MDListItemTrailingIcon:
+                                icon: "information-outline"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                            MDListItemHeadlineText:
+                                text: app.fa("درباره ما")
+                                font_name: "Vazirmatn.ttf"
+                                theme_text_color: "Custom"
+                                text_color: (0.3, 0.3, 0.3, 1)
+                                font_style: "Label"
+                                role: "small"
+                                                                
+                        MDDivider:
+                            size_hint_y: None
+                            height: dp(1)
+                        
+                        MDListItem:
+                            _no_ripple_effect: True
+                            on_release: app.logout()
+                            size_hint_y: None
+                            height: dp(40)
+                            MDListItemTrailingIcon:
+                                icon: "logout"
+                                theme_text_color: "Custom"
+                                text_color: (0.8, 0.1, 0.1, 1)
+                            MDListItemHeadlineText:
+                                text: app.fa("خروج")
+                                font_name: "Vazirmatn.ttf"
+                                theme_text_color: "Custom"
+                                text_color: (0.8, 0.1, 0.1, 1)
+                                font_style: "Label"
+                                role: "small"
+                                                            
+                MDLabel:
+                    text: "v 1.0.0"
+                    halign: "center"
+                    font_size: "10sp"
+                    theme_text_color: "Custom"
+                    text_color: (0.5, 0.5, 0.5, 1)
+                    size_hint_y: None
+                    height: dp(30)
+
+<HostRegisterScreen>:
+    name: "host_register_screen"
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # ==========================================
+        # 2. ناحیه فرم (قابل اسکرول)
+        # ==========================================
+        ScrollView:
+            size_hint_y: 1
+            
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(20)
+                spacing: dp(10)
+
+                # --- نام و نام خانوادگی ---
+                MDLabel:
+                    text: app.fa("نام و نام خانوادگی:")
+                    font_name: "Vazirmatn.ttf"
+                    font_size: "12sp"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+
+                MDTextField:
+                    id: host_fullname
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- شماره تماس ---
+                MDLabel:
+                    text: app.fa("شماره تماس:")
+                    font_name: "Vazirmatn.ttf"
+                    font_size: "12sp"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+
+                MDTextField:
+                    id: host_phone
+                    input_filter: "int"
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- شماره ملی ---
+                MDLabel:
+                    text: app.fa("شماره ملی:")
+                    font_name: "Vazirmatn.ttf"
+                    font_size: "12sp"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDTextField:
+                    id: host_national
+                    input_filter: "int"
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- رمز ورود ---
+                MDLabel:
+                    text: app.fa("رمز ورود:")
+                    font_name: "Vazirmatn.ttf"
+                    font_size: "12sp"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDTextField:
+                    id: host_pass
+                    password: True
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- شماره شبا (جدید) ---
+                MDLabel:
+                    text: app.fa("شماره شبا:")
+                    font_name: "Vazirmatn.ttf"
+                    font_size: "12sp"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: "50dp"
+                    spacing: "5dp"
+                    
+                    MDLabel:
+                        text: "IR"
+                        font_name: "Vazirmatn.ttf"
+                        font_size: "14sp"
+                        bold: True
+                        halign: "center"
+                        valign: "center"
+                        size_hint_x: .15
+                        theme_text_color: "Custom"
+                        text_color: (0, 0, 0, 1)
+                        font_style: "Label"
+                        role: "small"
+                        
+                    MDTextField:
+                        id: IR_host_shaba
+                        font_name: "Vazirmatn.ttf"
+                        font_family: "Vazirmatn"
+                        halign: "left"
+                        text_align: "left"
+                        size_hint_x: .85
+                        helper_text: " "
+                        helper_text_mode: "on_error"
+                        input_filter: "int"
+                        hint_text: "00-0000-0000-0000-0000-0000-00"
+
+                # --- متن قرارداد ---
+                MDLabel:
+                    text: app.fa("قرارداد:")
+                    font_name: "Vazirmatn.ttf"
+                    font_size: "12sp"
+                    size_hint_y: None
+                    height: "30dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDLabel:
+                    text: app.fa(app.CONTRACT_HOST_TEXT)
+                    font_name: "Vazirmatn.ttf"
+                    font_size: "10sp"
+                    size_hint_y: None
+                    height: "100dp"
+                    halign: "right"
+                    text_size: self.width, None
+                    font_style: "Label"
+                    role: "small"
+					
+                # --- چک‌باکس تایید قرارداد ---
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: "40dp"
+                    
+                    MDCheckbox:
+                        id: host_contract_check
+                        size_hint: None, None
+                        size: "30dp", "30dp"
+                        pos_hint: {"center_y": .5}
+                        
+                    MDLabel:
+                        text: app.fa("با شرایط قرارداد موافقم")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "right"
+                        font_size: "12sp"
+                        pos_hint: {"center_y": .5}
+                        font_style: "Label"
+                        role: "small"
+						
+                # --- دکمه ثبت ---
+                MDButton:
+                    style: "filled"
+                    pos_hint: {"center_x": .5}
+                    size_hint_x: .8
+                    on_release: app.register_host()
+                    MDButtonText:
+                        text: app.fa("ثبت نام")
+                        font_name: "Vazirmatn.ttf"
+					
+        # ==========================================
+        # 2. نوار پایین (شبیه جاجیگا)
+        # ==========================================
+        MDCard:
+            size_hint_y: None
+            height: dp(65)
+            md_bg_color: 1, 1, 1, 1
+            radius: [0, 0, 0, 0]
+            elevation: 8
+            
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint_x: 1
+                padding: [dp(5), dp(5), dp(5), dp(5)]
+				
+                # آیتم ۱: صفحه اصلی
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .25
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.go_home()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "home-outline"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.1, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("صفحه اصلی")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.1, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"
+
+                # آیتم ۳: خروج
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .33
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.logout()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "logout"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.8, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("خروج")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.8, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"	
+
+
+
+
+
+
+
+
+						
+
+<AdminScreen>:
+    name: "admin_screen"
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Color:
+                rgba: 1, 1, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # ==========================================
+        # 1. ناحیه فرم (قابل اسکرول)
+        # ==========================================
+        ScrollView:
+            size_hint_y: 1
+            
+            MDBoxLayout:
+                orientation: "vertical"
+                size_hint_y: None
+                height: self.minimum_height
+                padding: dp(20)
+                spacing: dp(10)
+
+                # --- نوع مکان ---
+                MDLabel:
+                    text: app.fa("گروه خدمات:")
+                    font_name: "Vazirmatn.ttf"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"					
+
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: "45dp"
+                    spacing: "10dp"
+                    
+                    MDButton:
+                        style: "filled"
+                        id: plus_button_location
+                        size_hint_x: .2
+                        on_release: app.add_new_category()
+                        MDButtonText:
+                            text: "+"
+                            font_name: "Vazirmatn.ttf"
+                        
+                    # ==== اصلاح شده: جایگزینی MDRaisedButton ====
+                    MDButton:
+                        style: "filled"
+                        id: category_button
+                        size_hint_x: .8
+                        on_release: app.open_category_menu(self)
+                        MDButtonText:
+                            text: app.fa("رستوران")
+                            font_name: "Vazirmatn.ttf"
+
+                # --- نام مکان ---
+                MDLabel:
+                    text: app.fa("نام تجاری خدمات:")
+                    font_name: "Vazirmatn.ttf"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDTextField:
+                    id: rest_name
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- سرو خدمات ---
+                MDLabel:
+                    text: app.fa("سرو خدمات:")
+                    font_name: "Vazirmatn.ttf"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDTextField:
+                    id: rest_food
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"	
+					
+                # ==========================================
+                # ردیف اول: تاریخ شروع و پایان (کومبوباکس)
+                # ==========================================
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: dp(90)
+                    spacing: dp(15)
+                    
+                    # ستون راست (تاریخ پایان)
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        size_hint_x: .5
+                        spacing: dp(5)
+                        
+                        MDLabel:
+                            text: app.fa("تاریخ پایان خدمات:")
+                            font_name: "Vazirmatn.ttf"
+                            halign: "right"
+                            text_size: self.width, None
+                            size_hint_y: None
+                            height: dp(25)
+                            font_style: "Label"
+                            role: "small"
+							
+                        AnchorLayout:
+                            anchor_x: "right"
+                            size_hint_y: None
+                            height: dp(45)
+                            
+                            MDButton:
+                                style: "filled"
+                                id: rest_date_finish_btn
+                                size_hint_x: .9
+                                height: dp(45)
+                                elevation: 0
+                                md_bg_color: (0.9, 0.9, 0.9, 1)
+                                on_release: app.open_date_menu_admin(self, "finish")
+                                MDButtonText:
+                                    text: app.fa("انتخاب تاریخ")
+                                    font_name: "Vazirmatn.ttf"
+                                    font_style: "Label"
+                                    role: "small"
+									
+                    # ستون چپ (تاریخ شروع)
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        size_hint_x: .5
+                        spacing: dp(5)
+                        
+                        MDLabel:
+                            text: app.fa("تاریخ شروع خدمات:")
+                            font_name: "Vazirmatn.ttf"
+                            halign: "right"
+                            text_size: self.width, None
+                            size_hint_y: None
+                            height: dp(25)
+                            font_style: "Label"
+                            role: "small"
+                            
+                        AnchorLayout:
+                            anchor_x: "right"
+                            size_hint_y: None
+                            height: dp(45)
+                            
+                            MDButton:
+                                style: "filled"
+                                id: rest_date_start_btn
+                                size_hint_x: .9
+                                height: dp(45)
+                                elevation: 0
+                                md_bg_color: (0.9, 0.9, 0.9, 1)
+                                on_release: app.open_date_menu_admin(self, "start")
+                                MDButtonText:
+                                    text: app.fa("انتخاب تاریخ")
+                                    font_name: "Vazirmatn.ttf"
+                                    font_style: "Label"
+                                    role: "small"
+									
+                # ==========================================
+                # ردیف دوم: ساعت شروع و پایان (کومبوباکس)
+                # ==========================================
+                MDBoxLayout:
+                    orientation: "horizontal"
+                    size_hint_y: None
+                    height: dp(90)
+                    spacing: dp(15)
+                    
+                    # ستون راست (ساعت پایان)
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        size_hint_x: .5
+                        spacing: dp(5)
+                        
+                        MDLabel:
+                            text: app.fa("ساعت پایان خدمات:")
+                            font_name: "Vazirmatn.ttf"
+                            halign: "right"
+                            text_size: self.width, None
+                            size_hint_y: None
+                            height: dp(25)
+                            font_style: "Label"
+                            role: "small"
+							
+                        AnchorLayout:
+                            anchor_x: "right"
+                            size_hint_y: None
+                            height: dp(45)
+                            
+                            MDButton:
+                                style: "filled"
+                                id: rest_time_finish_btn
+                                size_hint_x: .9
+                                height: dp(45)
+                                elevation: 0
+                                md_bg_color: (0.9, 0.9, 0.9, 1)
+                                on_release: app.open_time_menu_admin(self, "finish")
+                                MDButtonText:
+                                    text: app.fa("انتخاب ساعت")
+                                    font_name: "Vazirmatn.ttf"
+                                    font_style: "Label"
+                                    role: "small"
+								
+                    # ستون چپ (ساعت شروع)
+                    MDBoxLayout:
+                        orientation: "vertical"
+                        size_hint_x: .5
+                        spacing: dp(5)
+                        
+                        MDLabel:
+                            text: app.fa("ساعت شروع خدمات:")
+                            font_name: "Vazirmatn.ttf"
+                            halign: "right"
+                            text_size: self.width, None
+                            size_hint_y: None
+                            height: dp(25)
+                            font_style: "Label"
+                            role: "small"
+                            
+                        AnchorLayout:
+                            anchor_x: "right"
+                            size_hint_y: None
+                            height: dp(45)
+                            
+                            MDButton:
+                                style: "filled"
+                                id: rest_time_start_btn
+                                size_hint_x: .9
+                                height: dp(45)
+                                elevation: 0
+                                md_bg_color: (0.9, 0.9, 0.9, 1)
+                                on_release: app.open_time_menu_admin(self, "start")
+                                MDButtonText:
+                                    text: app.fa("انتخاب ساعت")
+                                    font_name: "Vazirmatn.ttf"
+                                    font_style: "Label"
+                                    role: "small"
+									
+                # --- ظرفیت ---
+                MDLabel:
+                    text: app.fa("ظرفیت روزانه(نفر):")
+                    font_name: "Vazirmatn.ttf"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDTextField:
+                    id: rest_cap
+                    input_filter: "int"
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- هزینه هر نفر ---
+                MDLabel:
+                    text: app.fa("هزینه هر نفر:")
+                    font_name: "Vazirmatn.ttf"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDTextField:
+                    id: rest_price
+                    input_filter: "int"
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- آدرس مکان ---
+                MDLabel:
+                    text: app.fa("آدرس مکان:")
+                    font_name: "Vazirmatn.ttf"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDTextField:
+                    id: rest_address
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- ثبت لوکیشن مکان ---
+                MDLabel:
+                    text: app.fa("ثبت لوکیشن مکان:")
+                    font_name: "Vazirmatn.ttf"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDButton:
+                    style: "filled"
+                    size_hint_x: .8
+                    pos_hint: {"center_x": .5}
+                    on_release: app.get_location()
+                    MDButtonText:
+                        text: app.fa("انتخاب لوکیشن")
+                        font_name: "Vazirmatn.ttf"
+                    
+                MDLabel:
+                    id: location_display
+                    text: app.fa("لوکیشن ثبت نشده است")
+                    font_name: "Vazirmatn.ttf"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    font_style: "Label"
+                    role: "small"
+					
+                # --- بارگذاری عکس ---
+                MDLabel:
+                    text: app.fa("بارگذاری عکس تبلیغاتی:")
+                    font_name: "Vazirmatn.ttf"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDButton:
+                    style: "filled"
+                    size_hint_x: .8
+                    pos_hint: {"center_x": .5}
+                    on_release: app.select_image()
+                    MDButtonText:
+                        text: app.fa("انتخاب عکس")
+                        font_name: "Vazirmatn.ttf"
+                    
+                Image:
+                    id: image_preview
+                    source: ""
+                    size_hint_y: None
+                    height: "0dp"
+                    opacity: 0
+
+                MDLabel:
+                    id: image_status
+                    text: app.fa("عکسی انتخاب نشده است")
+                    font_name: "Vazirmatn.ttf"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 0.5, 0.5, 0.5, 1
+                    font_style: "Label"
+                    role: "small"
+					
+                # --- تلفن تماس ---
+                MDLabel:
+                    text: app.fa("تلفن تماس:")
+                    font_name: "Vazirmatn.ttf"
+                    size_hint_y: None
+                    height: "20dp"
+                    halign: "right"
+                    font_style: "Label"
+                    role: "small"
+					
+                MDTextField:
+                    id: rest_phone
+                    input_filter: "int"
+                    font_name: "Vazirmatn.ttf"
+                    font_family: "Vazirmatn"
+                    halign: "right"
+                    text_align: "right"
+                    rtl: True
+                    size_hint_y: None
+                    height: "40dp"
+                    helper_text: " "
+                    helper_text_mode: "on_error"
+
+                # --- دکمه ثبت ---
+                MDCard:
+                    size_hint: .8, None
+                    height: "50dp"
+                    pos_hint: {"center_x": .5}
+                    md_bg_color: 0.15, 0.45, 0.9, 1
+                    radius: [10, 10, 10, 10]
+                    elevation: 0
+                    ripple_behavior: True
+                    on_release: app.add_restaurant()
+                    
+                    MDLabel:
+                        text: app.fa("ثبت")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "center"
+                        theme_text_color: "Custom"
+                        text_color: 1, 1, 1, 1
+
+        # ==========================================
+        # 2. نوار پایین (شبیه جاجیگا)
+        # ==========================================
+        MDCard:
+            size_hint_y: None
+            height: dp(65)
+            md_bg_color: 1, 1, 1, 1
+            radius: [0, 0, 0, 0]
+            elevation: 8
+            
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint_x: 1
+                padding: [dp(5), dp(5), dp(5), dp(5)]
+				
+                # آیتم ۱: صفحه اصلی
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .25
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.go_home()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "home-outline"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.1, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("صفحه اصلی")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.1, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"						
+
+                # آیتم ۱: لیست خدمات
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .33
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.go_host_services()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "format-list-bulleted"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.1, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("لیست خدمات من")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.1, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"						
+
+                # آیتم ۲: لیست سفارشات من
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .33
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.show_host_orders()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "clipboard-list-outline"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.1, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("لیست سفارشات من")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.1, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"
+						
+                # آیتم ۳: خروج
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .33
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.logout()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "logout"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.8, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("خروج")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.8, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"						
+						
+			
+<HostServicesScreen>:
+    name: "host_services_screen"
+    BoxLayout:
+        orientation: "vertical"
+        md_bg_color: 1, 1, 1, 1
+
+        # ==========================================
+        # 1. محتوای اصلی (لیست خدمات)
+        # ==========================================
+        MDFloatLayout:
+            md_bg_color: 1, 1, 1, 1
+            
+            # عنوان صفحه
+            MDLabel:
+                text: app.fa("خدمات ثبت شده شما")
+                pos_hint: {"center_x": .5, "center_y": .90}
+                halign: "center"
+                font_name: "Vazirmatn.ttf"
+                font_size: "10sp"
+
+            # لیست خدمات
+            ScrollView:
+                pos_hint: {"center_x": .5, "center_y": .45}
+                size_hint: .95, .75
+                MDList:
+                    id: host_services_list
+
+        # ==========================================
+        # 2. نوار پایین (شبیه جاجیگا)
+        # ==========================================
+        MDCard:
+            size_hint_y: None
+            height: dp(65)
+            md_bg_color: 1, 1, 1, 1
+            radius: [0, 0, 0, 0]
+            elevation: 8
+            
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint_x: 1
+                padding: [dp(5), dp(5), dp(5), dp(5)]
+				
+                # آیتم ۱: صفحه اصلی
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .25
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.go_home()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "home-outline"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.1, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("صفحه اصلی")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.1, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"
+                
+                # آیتم ۱: لیست سفارشات من
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .33
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.show_host_orders()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "format-list-bulleted"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.1, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("لیست سفارشات من")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.1, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"
+						
+                # آیتم ۲: ثبت خدمات جدید
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .33
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.go_admin_panel()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "home-plus-outline"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.1, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("ثبت خدمات جدید")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.1, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"
+						
+                # آیتم ۳: خروج
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .33
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.logout()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "logout"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.8, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("خروج")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.8, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None					
+                        font_style: "Label"
+                        role: "small"				
+<HostDemandScreen>:
+    name: "host_demand_screen"
+    BoxLayout:
+        orientation: "vertical"
+        md_bg_color: 1, 1, 1, 1
+
+        # ==========================================
+        # 1. محتوای اصلی (لیست سفارشات)
+        # ==========================================
+        MDFloatLayout:
+            md_bg_color: 1, 1, 1, 1
+            
+            # عنوان صفحه
+            MDLabel:
+                text: app.fa("سفارشات رزرو برای شما")
+                pos_hint: {"center_x": .5, "center_y": .90}
+                halign: "center"
+                font_name: "Vazirmatn.ttf"
+                font_size: "10sp"
+
+            # لیست سفارشات (تغییر id به host_demand_list)
+            ScrollView:
+                pos_hint: {"center_x": .5, "center_y": .45}
+                size_hint: .95, .75
+                MDList:
+                    id: host_demand_list
+
+        # ==========================================
+        # 2. نوار پایین (شبیه جاجیگا)
+        # ==========================================
+        MDCard:
+            size_hint_y: None
+            height: dp(65)
+            md_bg_color: 1, 1, 1, 1
+            radius: [0, 0, 0, 0]
+            elevation: 8
+            
+            MDBoxLayout:
+                orientation: "horizontal"
+                size_hint_x: 1
+                padding: [dp(5), dp(5), dp(5), dp(5)]
+				
+				
+                # آیتم ۱: صفحه اصلی
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .25
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.go_home()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "home-outline"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.1, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("صفحه اصلی")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.1, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None						
+                        font_style: "Label"
+                        role: "small"               
+                # آیتم ۱: لیست خدمات من
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .33
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.go_host_services()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "format-list-bulleted"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.1, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("لیست خدمات من")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.1, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"
+                # آیتم ۲: ثبت خدمات جدید
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .33
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.go_admin_panel()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "home-plus-outline"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.1, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("ثبت خدمات جدید")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.1, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"
+                # آیتم ۳: خروج
+                MDBoxLayout:
+                    orientation: "vertical"
+                    size_hint_x: .33
+                    spacing: dp(0)
+                    on_touch_down: if self.collide_point(*args[1].pos): app.logout()
+                    
+                    AnchorLayout:
+                        anchor_x: "center"
+                        anchor_y: "center"
+                        size_hint_y: None
+                        height: dp(30)
+                        
+                        MDIcon:
+                            icon: "logout"
+                            halign: "center"
+                            valign: "center"
+                            theme_text_color: "Custom"
+                            text_color: (0.8, 0.1, 0.1, 1)
+                            font_size: dp(28)
+                            padding: 0
+                            size_hint: None, None
+                            size: dp(28), dp(28)
+                            
+                    MDLabel:
+                        text: app.fa("خروج")
+                        font_name: "Vazirmatn.ttf"
+                        halign: "center"
+                        valign: "top"
+                        theme_text_color: "Custom"
+                        text_color: (0.8, 0.1, 0.1, 1)
+                        size_hint: 1, None
+                        height: dp(15)
+                        text_size: self.width, None
+                        font_style: "Label"
+                        role: "small"
