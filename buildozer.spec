@@ -115,24 +115,22 @@ source.main = main.py
 
 # (int) Target Android API, should be as high as possible.
 android.api = 30
-
-# (int) Minimum API your APK / AAB will support.
 android.minapi = 24
 
 # (int) Android SDK version to use
 #android.sdk = 20
 
 # (str) Android NDK version to use
-android.ndk = 25c
+android.ndk = 25b
 
 # (int) Android NDK API to use. This is the minimum API your app will support, it should usually match android.minapi.
 #android.ndk_api = 21
 
 # (str) Android NDK directory (if empty, it will be automatically downloaded.)
-android.ndk_path = /usr/lib/android-sdk/ndk/25.2.9519653
+#android.ndk_path = /usr/lib/android-sdk/ndk/25.2.9519653
 
 # (str) Android SDK directory (if empty, it will be automatically downloaded.)
-android.sdk_path = /home/shahab/android-sdk
+#android.sdk_path = /home/shahab/android-sdk
 
 # (str) ANT directory (if empty, it will be automatically downloaded.)
 #android.ant_path =
